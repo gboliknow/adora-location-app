@@ -145,6 +145,162 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Bad request.'**
   String get apiBadRequest;
+
+  /// No description provided for @permissionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow location access'**
+  String get permissionTitle;
+
+  /// No description provided for @permissionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This app needs location access to track and log your position in the foreground and background.'**
+  String get permissionBody;
+
+  /// No description provided for @allowWhileUsing.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow while using app'**
+  String get allowWhileUsing;
+
+  /// No description provided for @alwaysAllow.
+  ///
+  /// In en, this message translates to:
+  /// **'Always allow'**
+  String get alwaysAllow;
+
+  /// No description provided for @dontAllow.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t allow'**
+  String get dontAllow;
+
+  /// No description provided for @permissionDeniedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Location access denied'**
+  String get permissionDeniedTitle;
+
+  /// No description provided for @permissionDeniedOnceBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Background tracking requires \'Always\' permission. Please try again.'**
+  String get permissionDeniedOnceBody;
+
+  /// No description provided for @permissionDeniedForeverBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission is permanently denied. Please enable it in Settings.'**
+  String get permissionDeniedForeverBody;
+
+  /// No description provided for @openSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get openSettings;
+
+  /// No description provided for @trackerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracker'**
+  String get trackerTitle;
+
+  /// No description provided for @liveLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get liveLabel;
+
+  /// No description provided for @latitudeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Latitude'**
+  String get latitudeLabel;
+
+  /// No description provided for @longitudeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Longitude'**
+  String get longitudeLabel;
+
+  /// No description provided for @accuracyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Accuracy'**
+  String get accuracyLabel;
+
+  /// No description provided for @updatedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated'**
+  String get updatedLabel;
+
+  /// No description provided for @backgroundTrackingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Background Tracking'**
+  String get backgroundTrackingTitle;
+
+  /// No description provided for @enableBackgroundTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable background tracking'**
+  String get enableBackgroundTracking;
+
+  /// No description provided for @backgroundTrackingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continues when app is closed'**
+  String get backgroundTrackingSubtitle;
+
+  /// No description provided for @recentLogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Log'**
+  String get recentLogTitle;
+
+  /// No description provided for @noLocationYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for location…'**
+  String get noLocationYet;
+
+  /// No description provided for @sourceForeground.
+  ///
+  /// In en, this message translates to:
+  /// **'foreground'**
+  String get sourceForeground;
+
+  /// No description provided for @sourceBackground.
+  ///
+  /// In en, this message translates to:
+  /// **'background'**
+  String get sourceBackground;
+
+  /// No description provided for @sourceTerminated.
+  ///
+  /// In en, this message translates to:
+  /// **'terminated'**
+  String get sourceTerminated;
+
+  /// No description provided for @logTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Location Log'**
+  String get logTitle;
+
+  /// No description provided for @clearLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get clearLog;
+
+  /// No description provided for @noLogEntries.
+  ///
+  /// In en, this message translates to:
+  /// **'No location entries yet.'**
+  String get noLogEntries;
 }
 
 class _AppLocalizationsDelegate

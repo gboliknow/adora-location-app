@@ -7,5 +7,34 @@
   "apiConnectionError": "No internet connection.",
   "apiUnknownConnection": "An unknown error occurred.",
   "apiResponseTimeout": "Response timed out.",
-  "apiBadRequest": "Bad request."
+  "apiBadRequest": "Bad request.",
+
+  "permissionTitle": "Allow location access",
+  "permissionBody": "This app needs location access to track and log your position in the foreground and background.",
+  "allowWhileUsing": "Allow while using app",
+  "alwaysAllow": "Always allow",
+  "dontAllow": "Don't allow",
+  "permissionDeniedTitle": "Location access denied",
+  "permissionDeniedOnceBody": "Background tracking requires 'Always' permission. Please try again.",
+  "permissionDeniedForeverBody": "Location permission is permanently denied. Please enable it in Settings.",
+  "openSettings": "Open Settings",
+
+  "trackerTitle": "Tracker",
+  "liveLabel": "Live",
+  "latitudeLabel": "Latitude",
+  "longitudeLabel": "Longitude",
+  "accuracyLabel": "Accuracy",
+  "updatedLabel": "Updated",
+  "backgroundTrackingTitle": "Background Tracking",
+  "enableBackgroundTracking": "Enable background tracking",
+  "backgroundTrackingSubtitle": "Continues when app is closed",
+  "recentLogTitle": "Recent Log",
+  "noLocationYet": "Waiting for location\u2026",
+  "sourceForeground": "foreground",
+  "sourceBackground": "background",
+  "sourceTerminated": "terminated",
+
+  "logTitle": "Location Log",
+  "clearLog": "Clear",
+  "noLogEntries": "No location entries yet."
 }
