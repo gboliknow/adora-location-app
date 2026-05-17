@@ -1,0 +1,11 @@
+{
+  "@@locale": "en",
+  "appName": "Adora Location App",
+  "canceledApiRequest": "Request was cancelled.",
+  "apiConnectionTimeout": "Connection timed out.",
+  "apiBadCertificate": "Bad certificate.",
+  "apiConnectionError": "No internet connection.",
+  "apiUnknownConnection": "An unknown error occurred.",
+  "apiResponseTimeout": "Response timed out.",
+  "apiBadRequest": "Bad request."
+}
