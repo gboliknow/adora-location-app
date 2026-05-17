@@ -19,7 +19,7 @@ class LocaleToggle extends StatelessWidget {
         final isEn = locale.languageCode == 'en';
         return TextButton(
           onPressed: LocaleProvider.instance.toggle,
-          child: Text(isEn ? '中文' : 'EN', style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
+          child: Text(isEn ? '日本語' : 'EN', style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
         );
       },
     );
