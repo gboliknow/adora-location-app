@@ -3,6 +3,7 @@ import 'package:adora_location_app/models/location_point.dart';
 import 'package:adora_location_app/repositories/location_repository.dart';
 import 'package:adora_location_app/services/location/location_service.dart';
 import 'package:adora_location_app/services/permission/permission_service.dart';
+import 'package:adora_location_app/services/background/background_tracking_service.dart';
 
 final locationServiceProvider = Provider<LocationService>((ref) => LocationService());
 
@@ -19,3 +20,7 @@ final latestLocationProvider = Provider<LocationPoint?>((ref) {
   final log = ref.watch(locationLogProvider).valueOrNull;
   return (log != null && log.isNotEmpty) ? log.first : null;
 });
+
+/// Whether the background service is currently running.
+/// Exposed as a [FutureProvider] so the UI toggle can reflect live state.
+final isBackgroundRunningProvider = FutureProvider<bool>((_) => BackgroundTrackingService.isRunning);
