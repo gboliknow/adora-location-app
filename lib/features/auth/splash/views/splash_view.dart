@@ -9,6 +9,6 @@ class SplashView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // ignore: unused_local_variable
     final vm = ref.watch(splashViewModelProvider);
-    return const Scaffold(body: Center(child: Text('Splash')));
+    return const Scaffold(body: Center(child: Text('Splash 564')));
   }
 }
