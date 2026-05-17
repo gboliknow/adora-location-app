@@ -21,6 +21,7 @@ class HomeView extends ConsumerWidget {
     final logAsync = ref.watch(locationLogProvider);
     final isRunningAsync = ref.watch(isBackgroundRunningProvider);
     final isRunning = isRunningAsync.valueOrNull ?? false;
+    ref.watch(foregroundTrackingProvider);
 
     return Scaffold(
       appBar: AppBar(

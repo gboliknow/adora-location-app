@@ -38,11 +38,9 @@ class _SplashViewState extends ConsumerState<SplashView> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(color: Theme.of(context).colorScheme.primaryContainer, shape: BoxShape.circle),
-              child: Icon(Icons.location_on, size: 44, color: Theme.of(context).colorScheme.primary),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset('assets/icons/pngs/app_icon.png', width: 100, height: 100),
             ),
             const SizedBox(height: 20),
             Text(l10n.appName, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),

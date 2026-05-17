@@ -49,3 +49,15 @@ final latestLocationProvider = Provider<LocationPoint?>((ref) {
 /// Whether the background service is currently running.
 /// Exposed as a [FutureProvider] so the UI toggle can reflect live state.
 final isBackgroundRunningProvider = FutureProvider<bool>((_) => BackgroundTrackingService.isRunning);
+
+/// Saves every foreground location fix to the repository while the HomeView
+/// is mounted. Keeps the log and the coords card live even with background
+/// tracking OFF.
+final foregroundTrackingProvider = StreamProvider.autoDispose<void>((ref) async* {
+  final service = ref.watch(locationServiceProvider);
+  final repo = ref.watch(locationRepoProvider);
+
+  await for (final point in service.stream) {
+    await repo.save(point);
+  }
+});
