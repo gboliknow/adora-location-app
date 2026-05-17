@@ -21,9 +21,10 @@ Future<void> onAndroidStart(ServiceInstance service) async {
 
   final repo = LocationRepository();
 
-  const locationSettings = LocationSettings(
+  final locationSettings = AndroidSettings(
     accuracy: LocationAccuracy.high,
-    distanceFilter: 10, // metres — prevents flooding the log when stationary
+    distanceFilter: 10,
+    intervalDuration: const Duration(seconds: 30),
   );
 
   StreamSubscription<Position>? locationSub;
@@ -42,6 +43,9 @@ Future<void> onAndroidStart(ServiceInstance service) async {
       );
 
       await repo.save(point);
+
+      // Ping the UI isolate so its locationLogProvider re-reads Hive.
+      service.invoke('locationUpdate');
 
       // Update the sticky foreground notification with live coordinates.
       if (service is AndroidServiceInstance) {

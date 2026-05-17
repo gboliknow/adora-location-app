@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:adora_location_app/models/location_point.dart';
 import 'package:adora_location_app/repositories/location_repository.dart';
@@ -13,7 +16,29 @@ final permissionServiceProvider = Provider<PermissionService>((ref) => Permissio
 
 final locationStreamProvider = StreamProvider<LocationPoint>((ref) => ref.watch(locationServiceProvider).stream);
 
-final locationLogProvider = StreamProvider<List<LocationPoint>>((ref) => ref.watch(locationRepoProvider).watch());
+final locationLogProvider = StreamProvider<List<LocationPoint>>((ref) async* {
+  final repo = ref.watch(locationRepoProvider);
+
+  // Emit the persisted list immediately (covers cold-start and foreground writes).
+  yield repo.getAll();
+
+  // Signal controller: merges Hive box events (same-isolate writes) with
+  // 'locationUpdate' pings that the background isolate sends after each save.
+  final signal = StreamController<void>.broadcast();
+
+  final hiveSub = repo.watch().listen((_) => signal.add(null));
+  final bgSub = FlutterBackgroundService().on('locationUpdate').listen((_) => signal.add(null));
+
+  ref.onDispose(() {
+    hiveSub.cancel();
+    bgSub.cancel();
+    signal.close();
+  });
+
+  await for (final _ in signal.stream) {
+    yield repo.getAll();
+  }
+});
 
 // Derived from locationLogProvider so it stays reactive without a separate stream.
 final latestLocationProvider = Provider<LocationPoint?>((ref) {
