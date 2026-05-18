@@ -139,6 +139,15 @@ make run      # flutter run
 make clean    # flutter clean + pod deintegrate + pod install
 make gen      # flutter gen-l10n (regenerate localisation files)
 ```
+Pictures Attach
+<img width="720" height="1612" alt="Screenshot_20260518-121601" src="https://github.com/user-attachments/assets/eb9dbd67-22a6-4000-a364-5cd67a810c42" />
+<img width="720" height="1612" alt="Screenshot_20260518-121553" src="https://github.com/user-attachments/assets/095d0e7c-8674-4800-8ced-47ad8cb4898e" />
+<img width="720" height="1612" alt="Screenshot_20260518-120949" src="https://github.com/user-attachments/assets/d09c3dd2-7f66-4346-bfe7-874c0b7bd9a4" />
+<img width="1290" height="2796" alt="Image (5)" src="https://github.com/user-attachments/assets/0a80ba65-ec2c-4b9f-908c-734475804a44" />
+<img width="1290" height="2796" alt="Image (4)" src="https://github.com/user-attachments/assets/128bff86-661f-455c-8fc5-80f75b79af25" />
+<img width="1290" height="2796" alt="Image (3)" src="https://github.com/user-attachments/assets/562f59c3-1923-48c6-96d4-35c79687d194" />
+<img width="1290" height="2796" alt="Image (2)" src="https://github.com/user-attachments/assets/c463792f-5b4b-4bb3-ba19-e3fe83573388" />
+<img width="1290" height="2796" alt="Image (1)" src="https://github.com/user-attachments/assets/7bc12ccc-c771-4bcf-abaf-16b297afdbf6" />
 
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
