@@ -1,5 +1,11 @@
+/// Where in the app lifecycle a fix was captured.
 enum LocationSource { foreground, background, terminated }
 
+/// Immutable snapshot of a single GPS fix.
+///
+/// [accuracy] is in metres — lower is better. [source] records whether the
+/// fix came from the foreground stream, the background isolate, or a
+/// terminated-state significant-location-change event.
 class LocationPoint {
   final double lat;
   final double lng;

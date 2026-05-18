@@ -8,14 +8,32 @@ import 'package:adora_location_app/services/location/location_service.dart';
 import 'package:adora_location_app/services/permission/permission_service.dart';
 import 'package:adora_location_app/services/background/background_tracking_service.dart';
 
+/// Singleton [LocationService] shared across the app.
 final locationServiceProvider = Provider<LocationService>((ref) => LocationService());
 
+/// Singleton [LocationRepository] for persisting and reading location history.
 final locationRepoProvider = Provider<LocationRepository>((ref) => LocationRepository());
 
+/// Singleton [PermissionService] for querying and requesting location permissions.
 final permissionServiceProvider = Provider<PermissionService>((ref) => PermissionService());
 
+/// Raw foreground location stream — emits typed [LocationPoint]s filtered to
+/// ≤ 50 m accuracy. Only active while a subscriber is listening.
 final locationStreamProvider = StreamProvider<LocationPoint>((ref) => ref.watch(locationServiceProvider).stream);
 
+/// Live stream of whether the device's location service (GPS toggle) is enabled.
+///
+/// Emits [false] immediately when the user turns GPS off in system settings.
+/// The HomeView watches this to show a "GPS is off" prompt.
+final gpsServiceProvider = StreamProvider<bool>((ref) {
+  return ref.watch(locationServiceProvider).watchServiceEnabled();
+});
+
+/// Reactive, persisted location log — combines same-isolate Hive writes with
+/// cross-isolate 'locationUpdate' pings from the background service.
+///
+/// Always emits the full sorted list (newest first) from Hive so cold-starts
+/// and foreground writes are reflected without delay.
 final locationLogProvider = StreamProvider<List<LocationPoint>>((ref) async* {
   final repo = ref.watch(locationRepoProvider);
 
@@ -40,7 +58,8 @@ final locationLogProvider = StreamProvider<List<LocationPoint>>((ref) async* {
   }
 });
 
-// Derived from locationLogProvider so it stays reactive without a separate stream.
+/// Derived from [locationLogProvider] — the most recent [LocationPoint] or
+/// [null] if no fix has been recorded yet.
 final latestLocationProvider = Provider<LocationPoint?>((ref) {
   final log = ref.watch(locationLogProvider).valueOrNull;
   return (log != null && log.isNotEmpty) ? log.first : null;

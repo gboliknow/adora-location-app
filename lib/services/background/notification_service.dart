@@ -2,11 +2,12 @@ import 'dart:io';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-/// Creates the Android notification channel required by the foreground location service.
+/// Manages the Android notification channel used by the background location service.
 ///
-/// Must be called once in [main()] — before [BackgroundTrackingService.init()] —
-/// so the channel exists when the service posts its first notification.
-/// On iOS this is a no-op.
+/// Call [init] once in `main()`, before [BackgroundTrackingService.init()],
+/// so the channel exists when the foreground service posts its first update.
+/// On iOS this class is a no-op — iOS background tracking does not require
+/// a persistent notification.
 class NotificationService {
   NotificationService._();
 

@@ -16,6 +16,15 @@ final homeViewModelProvider = ChangeNotifierProvider.autoDispose<HomeViewModel>(
 class HomeViewModel extends BaseChangeNotifier {
   Timer? _timer;
 
+  /// Moment the view model was created — used to detect no-fix timeout.
+  final DateTime _startedAt = DateTime.now();
+
+  /// Seconds elapsed since the view model was first created.
+  ///
+  /// Combined with [latestLocationProvider] in the view: if [elapsedSeconds]
+  /// exceeds 30 and no fix has arrived, a "still searching" message is shown.
+  int get elapsedSeconds => DateTime.now().difference(_startedAt).inSeconds;
+
   /// Starts a 1-second ticker so "updated X ago" text stays live.
   void startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (_) => notifyListeners());

@@ -36,5 +36,11 @@
 
   "logTitle": "Location Log",
   "clearLog": "Clear",
-  "noLogEntries": "No location entries yet."
+  "noLogEntries": "No location entries yet.",
+
+  "gpsOffTitle": "GPS is turned off",
+  "gpsOffBody": "Enable location services to start tracking.",
+  "enableGps": "Enable GPS",
+  "fixTimeoutMessage": "Still searching for a GPS fix — try moving to an open area.",
+  "lowAccuracyWarning": "Low accuracy — signal may be obstructed"
 }

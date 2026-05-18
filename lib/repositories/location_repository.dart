@@ -2,7 +2,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:adora_location_app/models/location_point.dart';
 import 'package:adora_location_app/services/local/hive_service.dart';
 
-// Capped at _maxEntries to prevent unbounded storage growth.
+/// Hive-backed store for [LocationPoint] history.
+///
+/// Capped at [_maxEntries] (500) to prevent unbounded flash storage growth —
+/// the oldest entry is deleted whenever the cap is exceeded.
+///
+/// Thread-safety: Hive boxes are not thread-safe across Dart isolates.
+/// Each isolate (main + background) must open its own box via [HiveService.init].
 class LocationRepository {
   static const int _maxEntries = 500;
 

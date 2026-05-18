@@ -2,8 +2,18 @@ import 'dart:io';
 
 import 'package:permission_handler/permission_handler.dart';
 
+/// Outcome of a single [PermissionService.requestLocationPermission] call.
 enum PermissionResult { granted, deniedOnce, deniedForever, locationServiceOff }
 
+/// Abstracts platform permission dialogs behind a simple enum result.
+///
+/// iOS note: The OS requires "When In Use" to be granted before the app can
+/// ask for "Always". [requestLocationPermission] handles this two-step flow
+/// automatically.
+///
+/// **Podfile requirement** — `permission_handler` needs
+/// `PERMISSION_LOCATION=1` in the iOS `GCC_PREPROCESSOR_DEFINITIONS` Podfile
+/// block, otherwise all location requests silently return `permanentlyDenied`.
 class PermissionService {
   Future<PermissionResult> requestLocationPermission() async {
     // iOS requires When-In-Use to be granted before Always can be requested.

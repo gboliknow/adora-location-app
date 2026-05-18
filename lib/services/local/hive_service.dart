@@ -1,7 +1,10 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-// Must be called in main() AND in the background isolate — each isolate
-// needs its own Hive init.
+/// Bootstrap helper for Hive local storage.
+///
+/// **Must** be called in `main()` AND inside every background isolate —
+/// each Dart isolate has its own heap, so Hive must be initialised
+/// independently in each one before any box is opened.
 class HiveService {
   HiveService._();
 

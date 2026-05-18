@@ -5,6 +5,7 @@ import 'package:adora_location_app/core/extensions/context_extension.dart';
 import 'package:adora_location_app/features/location/home/components/background_toggle_card.dart';
 import 'package:adora_location_app/features/location/home/components/coords_card.dart';
 import 'package:adora_location_app/features/location/home/components/empty_location_card.dart';
+import 'package:adora_location_app/features/location/home/components/gps_off_card.dart';
 import 'package:adora_location_app/features/location/home/components/map_placeholder.dart';
 import 'package:adora_location_app/features/location/home/components/recent_log_section.dart';
 import 'package:adora_location_app/features/location/home/vm/home_viewmodel.dart';
@@ -21,7 +22,12 @@ class HomeView extends ConsumerWidget {
     final logAsync = ref.watch(locationLogProvider);
     final isRunningAsync = ref.watch(isBackgroundRunningProvider);
     final isRunning = isRunningAsync.valueOrNull ?? false;
+    // GPS service enabled state — assume on until the stream emits.
+    final gpsEnabled = ref.watch(gpsServiceProvider).valueOrNull ?? true;
     ref.watch(foregroundTrackingProvider);
+
+    // Show "still searching" hint after 30 s with no fix (and GPS is on).
+    final waitingTooLong = latest == null && vm.elapsedSeconds > 30 && gpsEnabled;
 
     return Scaffold(
       appBar: AppBar(
@@ -61,11 +67,17 @@ class HomeView extends ConsumerWidget {
               MapPlaceholder(latest: latest),
               const SizedBox(height: 16),
 
-              if (latest != null) ...[
+              // GPS-off banner — takes priority over coords/empty cards.
+              if (!gpsEnabled) ...[
+                GpsOffCard(l10n: l10n),
+                const SizedBox(height: 16),
+              ] else if (latest != null) ...[
                 CoordsCard(vm: vm, latest: latest, l10n: l10n),
                 const SizedBox(height: 16),
-              ] else
-                EmptyLocationCard(l10n: l10n),
+              ] else ...[
+                EmptyLocationCard(timedOut: waitingTooLong, l10n: l10n),
+                const SizedBox(height: 16),
+              ],
 
               BackgroundToggleCard(
                 vm: vm,

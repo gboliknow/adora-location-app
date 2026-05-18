@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:adora_location_app/features/location/home/vm/home_viewmodel.dart';
 import 'package:adora_location_app/models/location_point.dart';
+import 'package:adora_location_app/services/location/location_service.dart';
 
 class CoordsCard extends StatelessWidget {
   const CoordsCard({super.key, required this.vm, required this.latest, required this.l10n});
@@ -12,6 +13,8 @@ class CoordsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool lowAccuracy = latest.accuracy > LocationService.lowAccuracyWarningMeters;
+
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -44,11 +47,36 @@ class CoordsCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Text(
-              '${l10n.updatedLabel} ${vm.timeAgo(latest.timestamp)} · '
-              '${l10n.accuracyLabel} ${latest.accuracy.toStringAsFixed(0)} m',
-              style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '${l10n.updatedLabel} ${vm.timeAgo(latest.timestamp)} · '
+                  '${l10n.accuracyLabel} ',
+                  style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+                ),
+                Text(
+                  '${latest.accuracy.toStringAsFixed(0)} m',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: lowAccuracy ? Colors.orange.shade700 : Colors.grey[500],
+                    fontWeight: lowAccuracy ? FontWeight.w600 : FontWeight.normal,
+                  ),
+                ),
+                if (lowAccuracy) ...[
+                  const SizedBox(width: 4),
+                  Icon(Icons.warning_amber_rounded, size: 13, color: Colors.orange.shade700),
+                ],
+              ],
             ),
+            if (lowAccuracy) ...[
+              const SizedBox(height: 4),
+              Text(
+                l10n.lowAccuracyWarning,
+                style: TextStyle(fontSize: 11, color: Colors.orange.shade600),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ],
         ),
       ),

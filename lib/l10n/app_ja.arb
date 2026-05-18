@@ -36,5 +36,11 @@
 
   "logTitle": "位置ログ",
   "clearLog": "クリア",
-  "noLogEntries": "位置情報の記録がありません。"
+  "noLogEntries": "位置情報の記録がありません。",
+
+  "gpsOffTitle": "GPSがオフになっています",
+  "gpsOffBody": "位置情報サービスを有効にして追跡を開始してください。",
+  "enableGps": "GPSを有効にする",
+  "fixTimeoutMessage": "GPSを探しています — 屋外に移動してみてください。",
+  "lowAccuracyWarning": "精度が低い — 信号が遮断されている可能性があります"
 }
