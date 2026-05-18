@@ -57,6 +57,7 @@
 	<!-- Background task identifier — must match the ID registered in AppDelegate.swift (Phase 3) -->
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
+		<string>dev.flutter.background.refresh</string>
 		<string>com.example.adoraLocationApp.refresh</string>
 	</array>
 
