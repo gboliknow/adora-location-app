@@ -7,11 +7,37 @@ import 'package:adora_location_app/features/location/permission/components/reque
 import 'package:adora_location_app/features/location/permission/vm/permission_viewmodel.dart';
 import 'package:adora_location_app/routes/route.dart';
 
-class PermissionView extends ConsumerWidget {
+class PermissionView extends ConsumerStatefulWidget {
   const PermissionView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PermissionView> createState() => _PermissionViewState();
+}
+
+class _PermissionViewState extends ConsumerState<PermissionView> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  /// Re-check permission state every time the app returns to the foreground
+  /// (e.g. after the user changes the setting in iOS Settings).
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      ref.read(permissionViewModelProvider).recheckStatus();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final vm = ref.watch(permissionViewModelProvider);
     final l10n = context.localizations;
 

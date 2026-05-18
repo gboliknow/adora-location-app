@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:adora_location_app/base/base_change_notifier.dart';
@@ -17,30 +18,57 @@ final permissionViewModelProvider = ChangeNotifierProvider<PermissionViewModel>(
 );
 
 class PermissionViewModel extends BaseChangeNotifier {
-  PermissionViewModel(this._permissionService);
+  PermissionViewModel(this._permissionService) {
+    _checkCurrentStatus();
+  }
 
   final PermissionService _permissionService;
 
   PermissionState _state = PermissionState.initial;
   PermissionState get state => _state;
 
+  /// Called on init and when returning from Settings — syncs state to the
+  /// real iOS/Android permission status without triggering a new request dialog.
+  Future<void> recheckStatus() async {
+    final isGranted = await _permissionService.isGranted;
+    if (isGranted) {
+      _state = PermissionState.granted;
+      notifyListeners();
+      return;
+    }
+    final denied = await _permissionService.isPermanentlyDenied;
+    if (denied) {
+      _state = PermissionState.deniedForever;
+    } else {
+      _state = PermissionState.initial;
+    }
+    notifyListeners();
+  }
+
+  Future<void> _checkCurrentStatus() => recheckStatus();
+
   /// Request "Always" location permission — the level needed for background tracking.
   /// Updates [state] so the view can react without knowing about [PermissionService].
   Future<void> requestAlways() async {
-    setLoading(true);
-    final result = await _permissionService.requestLocationPermission();
-    setLoading(false);
+    try {
+      setLoading(true);
+      final result = await _permissionService.requestLocationPermission();
+      setLoading(false);
 
-    switch (result) {
-      case PermissionResult.granted:
-        _state = PermissionState.granted;
-      case PermissionResult.deniedOnce:
-      case PermissionResult.locationServiceOff:
-        _state = PermissionState.deniedOnce;
-      case PermissionResult.deniedForever:
-        _state = PermissionState.deniedForever;
+      switch (result) {
+        case PermissionResult.granted:
+          _state = PermissionState.granted;
+        case PermissionResult.deniedOnce:
+        case PermissionResult.locationServiceOff:
+          _state = PermissionState.deniedOnce;
+        case PermissionResult.deniedForever:
+          _state = PermissionState.deniedForever;
+      }
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error requesting permission: $e');
+      setLoading(false);
     }
-    notifyListeners();
   }
 
   /// Request "When in use" only — background tracking won't work but foreground will.
