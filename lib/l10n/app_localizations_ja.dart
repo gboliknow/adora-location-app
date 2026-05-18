@@ -36,7 +36,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get permissionTitle => '位置情報へのアクセスを許可';
 
   @override
-  String get permissionBody => 'このアプリは、フォアグラウンドおよびバックグラウンドで位置情報を記録するために位置情報へのアクセスが必要です。';
+  String get permissionBody =>
+      'このアプリは、フォアグラウンドおよびバックグラウンドで位置情報を記録するために位置情報へのアクセスが必要です。';
 
   @override
   String get allowWhileUsing => '使用中のみ許可';
@@ -54,7 +55,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get permissionDeniedOnceBody => 'バックグラウンド追跡には「常に許可」が必要です。もう一度お試しください。';
 
   @override
-  String get permissionDeniedForeverBody => '位置情報のアクセス許可が永久に拒否されました。設定で有効にしてください。';
+  String get permissionDeniedForeverBody =>
+      '位置情報のアクセス許可が永久に拒否されました。設定で有効にしてください。';
 
   @override
   String get openSettings => '設定を開く';
@@ -120,8 +122,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get enableGps => 'GPSを有効にする';
 
   @override
-  String get fixTimeoutMessage => 'GPSを探しています \u2014 屋外に移動してみてください。';
+  String get fixTimeoutMessage => 'GPSを探しています — 屋外に移動してみてください。';
 
   @override
-  String get lowAccuracyWarning => '精度が低い \u2014 信号が遮断されている可能性があります';
+  String get lowAccuracyWarning => '精度が低い — 信号が遮断されている可能性があります';
 }

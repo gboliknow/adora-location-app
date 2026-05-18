@@ -52,10 +52,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get permissionDeniedTitle => 'Location access denied';
 
   @override
-  String get permissionDeniedOnceBody => 'Background tracking requires \'Always\' permission. Please try again.';
+  String get permissionDeniedOnceBody =>
+      'Background tracking requires \'Always\' permission. Please try again.';
 
   @override
-  String get permissionDeniedForeverBody => 'Location permission is permanently denied. Please enable it in Settings.';
+  String get permissionDeniedForeverBody =>
+      'Location permission is permanently denied. Please enable it in Settings.';
 
   @override
   String get openSettings => 'Open Settings';
@@ -121,8 +123,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enableGps => 'Enable GPS';
 
   @override
-  String get fixTimeoutMessage => 'Still searching for a GPS fix \u2014 try moving to an open area.';
+  String get fixTimeoutMessage =>
+      'Still searching for a GPS fix — try moving to an open area.';
 
   @override
-  String get lowAccuracyWarning => 'Low accuracy \u2014 signal may be obstructed';
+  String get lowAccuracyWarning => 'Low accuracy — signal may be obstructed';
 }
