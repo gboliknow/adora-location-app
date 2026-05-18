@@ -139,7 +139,8 @@ make run      # flutter run
 make clean    # flutter clean + pod deintegrate + pod install
 make gen      # flutter gen-l10n (regenerate localisation files)
 ```
-Pictures Attach
+Ios And Android Screenshot Attached Below 
+
 <img width="720" height="1612" alt="Screenshot_20260518-121601" src="https://github.com/user-attachments/assets/eb9dbd67-22a6-4000-a364-5cd67a810c42" />
 <img width="720" height="1612" alt="Screenshot_20260518-121553" src="https://github.com/user-attachments/assets/095d0e7c-8674-4800-8ced-47ad8cb4898e" />
 <img width="720" height="1612" alt="Screenshot_20260518-120949" src="https://github.com/user-attachments/assets/d09c3dd2-7f66-4346-bfe7-874c0b7bd9a4" />
